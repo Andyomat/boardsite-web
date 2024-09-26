@@ -1,0 +1,18 @@
+app:
+  name: boardsite-server
+server:
+  base_url: http://localhost
+  port: 8000
+  origins: "*"
+  rpm: 0
+  metrics:
+    enabled: false
+    route: /metrics
+    user: admin
+    password: admin
+cache:
+  host: redis
+  port: 6379
+session: # default session settings
+  max_users: 50
+  read_only: false

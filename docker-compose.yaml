@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  web:
+    build:
+      args:
+        API_URL: "http://api:8000"
+      context: .
+      target: nginx
+    ports:
+      - "8000:80"
+  api:
+    image: ghcr.io/boardsite-io/boardsite-server:latest
+    volumes:
+      - ./server-config.yaml:/app/config.yaml:ro
+    command: /app/boardsite -config /app/config.yaml
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"
